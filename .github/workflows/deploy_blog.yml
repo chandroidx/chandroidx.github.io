@@ -21,4 +21,4 @@ jobs:
       - run: git config user.email github-actions@github.com
       - run: git --work-tree build/web add --all
       - run: git commit -m "${{ github.event.head_commit.message }}"
-      - run: git push origin HEAD:master --force
+      - run: git push origin HEAD:release --force
