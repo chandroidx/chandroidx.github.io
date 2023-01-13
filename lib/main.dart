@@ -11,7 +11,7 @@ class ChandroidXBlog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '안드로이드 개발자 ChandroidX',
+      title: '찬드로이드 개발 블로그 ☘',
       theme: ThemeData(
         // This is the theme of your application.
         //
