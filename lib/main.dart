@@ -23,6 +23,6 @@ class ChandroidXBlog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(initialRoute: MainTab.home.route, routes: MainTab.routes());
+    return MaterialApp(home: MainTab.home.navigationRoute);
   }
 }
