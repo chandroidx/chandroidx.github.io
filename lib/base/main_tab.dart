@@ -1,6 +1,8 @@
 import 'package:chandroidx/blog/blog_page.dart';
 import 'package:chandroidx/home/home_page.dart';
+import 'package:chandroidx/main.dart';
 import 'package:chandroidx/portfolio/portfolio_page.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 class MainTabContainer extends StatefulWidget {
@@ -86,7 +88,7 @@ enum MainTab {
     Map<String, Widget Function(BuildContext)> routes = {};
 
     for (var element in MainTab.values) {
-      routes[element.route] = (context) => element._navigationRoute;
+      routes[element.route] = (context) => element.navigationRoute;
     }
 
     return routes;
@@ -116,7 +118,7 @@ extension MainTabExtension on MainTab {
     }
   }
 
-  Widget get _navigationRoute {
+  Widget get navigationRoute {
     switch (this) {
       case MainTab.home:
         return const HomePage();
@@ -128,12 +130,6 @@ extension MainTabExtension on MainTab {
   }
 
   void navigate(BuildContext context) {
-    Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (context, animation1, animation2) => MainTab.values.firstWhere((element) => element.route == route)._navigationRoute,
-          transitionDuration: Duration.zero,
-          reverseTransitionDuration: Duration.zero,
-        ));
+    router.navigateTo(context, route, transition: TransitionType.none);
   }
 }
