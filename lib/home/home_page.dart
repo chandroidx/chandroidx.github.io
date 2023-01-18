@@ -30,6 +30,7 @@ class HomePage extends StatelessWidget {
                   "pycivan@gmail.com",
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
+                    fontFamily: 'NotoSans',
                     fontSize: 15,
                     decoration: TextDecoration.none,
                     color: Colors.black54,
