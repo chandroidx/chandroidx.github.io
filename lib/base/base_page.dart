@@ -13,30 +13,27 @@ class BasePage extends StatelessWidget {
     return Title(
       color: Colors.black,
       title: title,
-      child:Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-          child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Align(
-                alignment: Alignment.center,
-                child: Container(
-                  constraints: const BoxConstraints(maxWidth: 1000),
-                  child: Column(
-                    children: [
-                      MainTabContainer(tab: tab),
-                      Container(
-                        child: body,
-                      )
-                    ],
+      child: Material(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: SingleChildScrollView(
+            child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    constraints: const BoxConstraints(maxWidth: 1000),
+                    child: Column(
+                      children: [MainTabContainer(tab: tab), Padding(padding: const EdgeInsets.fromLTRB(0, 60, 0, 0), child: body)],
+                    ),
                   ),
                 ),
-              ),
-            );
-          }),
+              );
+            }),
+          ),
         ),
-      ) ,
+      ),
     );
   }
 }
