@@ -24,17 +24,14 @@ class HomePage extends StatelessWidget {
                   color: Colors.black87,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(3, 0, 0, 0),
-                child: Text(
-                  "pycivan@gmail.com",
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontFamily: 'NotoSans',
-                    fontSize: 15,
-                    decoration: TextDecoration.none,
-                    color: Colors.black54,
-                  ),
+              const Text(
+                "pycivan@gmail.com",
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontFamily: 'NotoSans',
+                  fontSize: 15,
+                  decoration: TextDecoration.none,
+                  color: Colors.black54,
                 ),
               ),
               const SizedBox(
@@ -43,7 +40,6 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
-                  SizedBox(width: 5),
                   ProfileLinkButton(assetName: 'assets/ico_github.svg', url: 'https://github.com/chandroidx'),
                 ],
               )
