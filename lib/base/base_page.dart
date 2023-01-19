@@ -15,6 +15,7 @@ class BasePage extends StatelessWidget {
       color: Colors.black,
       title: title,
       child: Material(
+        color: Colors.white,
         child: SingleChildScrollView(
           child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
             return Padding(
