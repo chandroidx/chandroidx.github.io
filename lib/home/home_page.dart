@@ -52,11 +52,11 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 80),
-              const SubTitle(emoji: '👨‍💻', title: 'Activities'),
-              const SizedBox(height: 10),
-              Image.network('https://ghchart.rshah.org/chandroidx'),
-              const SizedBox(height: 10),
-              Image.network(width: 500, 'https://wakatime.com/share/@ChandroidX/3b22ec11-9b50-4b7b-abdd-bd4616a44db9.png')
+              SubTitle(emoji: '👨‍💻', title: 'Activities', children: [
+                Image.network('https://ghchart.rshah.org/chandroidx'),
+                const SizedBox(height: 10),
+                Image.network(width: 500, 'https://wakatime.com/share/@ChandroidX/a8bdfb2d-3f53-4b74-bf8b-5a8f91960549.png')
+              ]),
             ],
           ),
         ),
