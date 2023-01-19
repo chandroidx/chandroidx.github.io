@@ -2,6 +2,8 @@ import 'package:chandroidx/blog/blog_page.dart';
 import 'package:chandroidx/home/home_page.dart';
 import 'package:chandroidx/main.dart';
 import 'package:chandroidx/portfolio/portfolio_page.dart';
+import 'package:chandroidx/utils/colors.dart';
+import 'package:chandroidx/utils/fonts.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +64,12 @@ class MainTabButton extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 15.toDouble(), fontFamily: 'NotoSans', fontWeight: isSelected ? FontWeight.bold : FontWeight.normal),
+              style: TextStyle(
+                fontSize: 15.toDouble(),
+                fontFamily: FontFamily.sourceSansPro.fontFamily,
+                color: ChandroidColors.textColor.color,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
             ),
             const SizedBox(
               height: 5,
@@ -72,7 +79,7 @@ class MainTabButton extends StatelessWidget {
                 child: Container(
                   width: 40,
                   height: 1.5,
-                  color: Colors.black,
+                  color: ChandroidColors.textColor.color,
                 ))
           ],
         ));

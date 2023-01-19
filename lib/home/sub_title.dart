@@ -1,3 +1,4 @@
+import 'package:chandroidx/utils/fonts.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
@@ -27,8 +28,8 @@ class SubTitle extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: androidColor,
-                fontFamily: 'NotoSans',
+                color: ChandroidColors.primaryColor.color,
+                fontFamily: FontFamily.sourceSansPro.fontFamily,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 decoration: TextDecoration.none,
@@ -37,7 +38,7 @@ class SubTitle extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+          padding: const EdgeInsets.fromLTRB(5, 30, 5, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: children,

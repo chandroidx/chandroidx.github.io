@@ -84,18 +84,32 @@ flutter:
   fonts:
     - family: NotoSansKR
       fonts:
-        - asset: fonts/NotoSansKR-Regular.otf
-        - asset: fonts/NotoSansKR-Medium.otf
+        - asset: fonts/notoSans/NotoSansKR-Regular.otf
+        - asset: fonts/notoSans/NotoSansKR-Medium.otf
           weight: 500
-        - asset: fonts/NotoSansKR-Bold.otf
+        - asset: fonts/notoSans/NotoSansKR-Bold.otf
           weight: 700
 
     - family: NotoSans
       fonts:
-        - asset: fonts/NotoSans-Regular.ttf
-        - asset: fonts/NotoSans-Medium.ttf
+        - asset: fonts/notoSans/NotoSans-Regular.ttf
+        - asset: fonts/notoSans/NotoSans-Medium.ttf
           weight: 500
-        - asset: fonts/NotoSans-Bold.ttf
+        - asset: fonts/notoSans/NotoSans-Bold.ttf
+          weight: 700
+
+    - family: SourceSansPro
+      fonts:
+        - asset: fonts/sourceSansPro/SourceSansPro-Regular.ttf
+        - asset: fonts/sourceSansPro/SourceSansPro-Bold.ttf
+          weight: 700
+
+    - family: AppleSDGothicNeo
+      fonts:
+        - asset: fonts/appleSDGothicNeo/AppleSDGothicNeoR.ttf
+        - asset: fonts/appleSDGothicNeo/AppleSDGothicNeoM.ttf
+          weight: 500
+        - asset: fonts/appleSDGothicNeo/AppleSDGothicNeoB.ttf
           weight: 700
   # fonts:
   #   - family: Schyler

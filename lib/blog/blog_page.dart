@@ -8,7 +8,7 @@ class BlogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasePage(
-      title: '찬드로이드 ☘ | 블로그',
+      title: '찬드로이드 \u2618️ | 블로그',
       body: Container(),
       tab: MainTab.blog
     );
