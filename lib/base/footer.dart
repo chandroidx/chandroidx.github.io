@@ -68,7 +68,7 @@ class Footer extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        "©chandroidX. 2023 (Thanks to @cowkite)",
+                        "©chandroidx. 2023 (Thanks to @cowkite)",
                         style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontFamily: FontFamily.sourceSansPro.fontFamily,
