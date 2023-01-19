@@ -47,6 +47,8 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
                   ProfileLinkButton(assetName: 'assets/ico_github.svg', url: 'https://github.com/chandroidx'),
+                  SizedBox(width: 5),
+                  ProfileLinkButton(assetName: 'assets/ico_instagram.svg', url: 'https://instagram.com/ch_android'),
                 ],
               ),
               const SizedBox(height: 80),
