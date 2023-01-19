@@ -1,7 +1,10 @@
 import 'package:chandroidx/base/base_page.dart';
 import 'package:chandroidx/base/main_tab.dart';
 import 'package:chandroidx/home/profile_link_button.dart';
+import 'package:chandroidx/home/sub_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -24,14 +27,17 @@ class HomePage extends StatelessWidget {
                   color: Colors.black87,
                 ),
               ),
-              const Text(
-                "pycivan@gmail.com",
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontFamily: 'NotoSans',
-                  fontSize: 15,
-                  decoration: TextDecoration.none,
-                  color: Colors.black54,
+              GestureDetector(
+                onTap: () => {launchUrl(Uri.parse('mailto:pycivan@gmail.com'))},
+                child: const Text(
+                  "pycivan@gmail.com",
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontFamily: 'NotoSans',
+                    fontSize: 15,
+                    decoration: TextDecoration.none,
+                    color: Colors.black54,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -42,7 +48,13 @@ class HomePage extends StatelessWidget {
                 children: const [
                   ProfileLinkButton(assetName: 'assets/ico_github.svg', url: 'https://github.com/chandroidx'),
                 ],
-              )
+              ),
+              const SizedBox(height: 80),
+              const SubTitle(emoji: '👨‍💻', title: 'Activities'),
+              const SizedBox(height: 10),
+              Image.network('https://ghchart.rshah.org/chandroidx'),
+              const SizedBox(height: 10),
+              Image.network(width: 500, 'https://wakatime.com/share/@ChandroidX/3b22ec11-9b50-4b7b-abdd-bd4616a44db9.png')
             ],
           ),
         ),
