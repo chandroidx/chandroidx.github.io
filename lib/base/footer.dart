@@ -1,4 +1,5 @@
 import 'package:chandroidx/utils/fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -61,13 +62,30 @@ class Footer extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          ProfileLinkButton(assetName: 'assets/ico_github.svg', url: 'https://github.com/chandroidx', color: footerColor),
-                          const SizedBox(width: 20),
-                          const ProfileLinkButton(assetName: 'assets/ico_instagram.svg', url: 'https://instagram.com/ch_android', color: null),
-                        ],
-                      ),
+                      FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                          future: FirebaseFirestore.instance.collection('profile_link').get(),
+                          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.done) {
+                              var docs = snapshot.data!.docs.map((e) => ProfileLink.fromResponse(e));
+
+                              return Row(
+                                children: docs
+                                    .map((doc) => Row(
+                                          children: [
+                                            ProfileLinkButton(
+                                              svgUrl: doc.svgUrl,
+                                              url: doc.url,
+                                              color: doc.applyColor ? footerColor : null,
+                                            ),
+                                            const SizedBox(width: 20)
+                                          ],
+                                        ))
+                                    .toList(),
+                              );
+                            } else {
+                              return Container();
+                            }
+                          }),
                       Text(
                         "©chandroidx. 2023 (Thanks to @cowkite)",
                         style: TextStyle(
