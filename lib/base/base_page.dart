@@ -26,6 +26,7 @@ class BasePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       constraints: const BoxConstraints(maxWidth: 1000),
                       child: Column(
                         children: [MainTabContainer(tab: tab), Padding(padding: const EdgeInsets.fromLTRB(0, 60, 0, 0), child: body)],
