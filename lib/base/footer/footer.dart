@@ -57,8 +57,9 @@ class Footer extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    runSpacing: 10,
                     children: [
                       FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                           future: FirebaseFirestore.instance.collection('profile_link').get(),
@@ -66,22 +67,16 @@ class Footer extends StatelessWidget {
                             if (snapshot.connectionState == ConnectionState.done) {
                               var profileLinks = snapshot.data!.docs.map((e) => ProfileLink.fromResponse(e)).toList();
                               profileLinks.sort((a, b) => a.id.compareTo(b.id));
-                              return Row(
-                                children: profileLinks
-                                    .map((doc) => Row(
-                                          children: [
-                                            ProfileLinkButton(
-                                              profileLink: doc,
-                                            ),
-                                            const SizedBox(width: 20)
-                                          ],
-                                        ))
-                                    .toList(),
+                              return Wrap(
+                                direction: Axis.horizontal,
+                                spacing: 20,
+                                children: profileLinks.map((doc) => ProfileLinkButton(profileLink: doc)).toList(),
                               );
                             } else {
                               return Container();
                             }
                           }),
+                      const SizedBox(width: 700),
                       Text(
                         "©chandroidx. 2023 (Thanks to @cowkite)",
                         style: TextStyle(
