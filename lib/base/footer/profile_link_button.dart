@@ -33,13 +33,14 @@ class ProfileLinkButton extends StatelessWidget {
 }
 
 class ProfileLink {
+  final int id;
   final String svgUrl;
   final String url;
   final bool applyColor;
 
-  ProfileLink({required this.svgUrl, required this.url, required this.applyColor});
+  ProfileLink({required this.id, required this.svgUrl, required this.url, required this.applyColor});
 
   factory ProfileLink.fromResponse(QueryDocumentSnapshot<Map<String, dynamic>> response) {
-    return ProfileLink(svgUrl: response['svg_url'], url: response['url'], applyColor: response['apply_color']);
+    return ProfileLink(id: response['id'], svgUrl: response['svg_url'], url: response['url'], applyColor: response['apply_color']);
   }
 }

@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class Footer extends StatelessWidget {
   final footerColor = const Color.fromARGB(255, 140, 152, 169);
 
@@ -66,8 +65,8 @@ class Footer extends StatelessWidget {
                           future: FirebaseFirestore.instance.collection('profile_link').get(),
                           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
                             if (snapshot.connectionState == ConnectionState.done) {
-                              var docs = snapshot.data!.docs.map((e) => ProfileLink.fromResponse(e));
-
+                              var docs = snapshot.data!.docs.map((e) => ProfileLink.fromResponse(e)).toList();
+                              docs.sort((a, b) => a.id.compareTo(b.id));
                               return Row(
                                 children: docs
                                     .map((doc) => Row(
