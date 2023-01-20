@@ -63,12 +63,12 @@ class HomePage extends StatelessWidget {
                         var skills = snapshot.data!.docs.map((e) => Skill.fromResponse(e)).toList();
                         skills.sort((a, b) => b.highlight ? 1 : -1);
 
-                        return Row(
-                          children: skills
-                              .map((skill) => Row(
-                                    children: [SkillChip(skill: skill), const SizedBox(width: 10)],
-                                  ))
-                              .toList(),
+                        return Wrap(
+                          direction: Axis.horizontal,
+                          alignment: WrapAlignment.start,
+                          spacing: 10,
+                          runSpacing: 10,
+                          children: skills.map((skill) => SkillChip(skill: skill)).toList(),
                         );
                       } else {
                         return Container();
