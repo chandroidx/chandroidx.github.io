@@ -1,12 +1,11 @@
 import 'package:chandroidx/base/footer/profile_link_button.dart';
+import 'package:chandroidx/utils/colors.dart';
 import 'package:chandroidx/utils/fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
-  final footerColor = const Color.fromARGB(255, 140, 152, 169);
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraint) {
@@ -37,7 +36,7 @@ class Footer extends StatelessWidget {
                   Text('찬드로이드 개발 블로그 \u2618',
                       style: TextStyle(
                         fontSize: 17,
-                        color: footerColor,
+                        color: ChandroidColors.footerColor.color,
                         fontWeight: FontWeight.w600,
                         fontFamily: FontFamily.sourceSansPro.fontFamily,
                       )),
@@ -51,7 +50,7 @@ class Footer extends StatelessWidget {
                         fontFamily: FontFamily.sourceSansPro.fontFamily,
                         fontSize: 15,
                         decoration: TextDecoration.none,
-                        color: footerColor,
+                        color: ChandroidColors.footerColor.color,
                       ),
                     ),
                   ),
@@ -65,16 +64,14 @@ class Footer extends StatelessWidget {
                           future: FirebaseFirestore.instance.collection('profile_link').get(),
                           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
                             if (snapshot.connectionState == ConnectionState.done) {
-                              var docs = snapshot.data!.docs.map((e) => ProfileLink.fromResponse(e)).toList();
-                              docs.sort((a, b) => a.id.compareTo(b.id));
+                              var profileLinks = snapshot.data!.docs.map((e) => ProfileLink.fromResponse(e)).toList();
+                              profileLinks.sort((a, b) => a.id.compareTo(b.id));
                               return Row(
-                                children: docs
+                                children: profileLinks
                                     .map((doc) => Row(
                                           children: [
                                             ProfileLinkButton(
-                                              svgUrl: doc.svgUrl,
-                                              url: doc.url,
-                                              color: doc.applyColor ? footerColor : null,
+                                              profileLink: doc,
                                             ),
                                             const SizedBox(width: 20)
                                           ],
@@ -92,7 +89,7 @@ class Footer extends StatelessWidget {
                           fontFamily: FontFamily.sourceSansPro.fontFamily,
                           fontSize: 13,
                           decoration: TextDecoration.none,
-                          color: footerColor,
+                          color: ChandroidColors.footerColor.color,
                         ),
                       )
                     ],
