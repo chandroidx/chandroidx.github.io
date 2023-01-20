@@ -1,4 +1,4 @@
-import 'package:chandroidx/base/footer.dart';
+import 'package:chandroidx/base/footer/footer.dart';
 import 'package:chandroidx/base/main_tab.dart';
 import 'package:flutter/material.dart';
 

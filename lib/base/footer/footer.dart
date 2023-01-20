@@ -1,9 +1,9 @@
+import 'package:chandroidx/base/footer/profile_link_button.dart';
 import 'package:chandroidx/utils/fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../home/profile_link_button.dart';
 
 class Footer extends StatelessWidget {
   final footerColor = const Color.fromARGB(255, 140, 152, 169);
