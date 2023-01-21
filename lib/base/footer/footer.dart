@@ -5,10 +5,37 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Footer extends StatelessWidget {
+class Footer extends StatefulWidget {
+  const Footer({super.key});
+
+  @override
+  State<StatefulWidget> createState() => FooterState();
+}
+
+class FooterState extends State<Footer> {
+  final footerColor = const Color.fromARGB(255, 140, 152, 169);
+
+  List<ProfileLink> _links = [];
+
+  _requestProfileLinks() async {
+    var collection =
+        await FirebaseFirestore.instance.collection('profile_link').get();
+
+    setState(() {
+      _links = collection.docs.map((e) => ProfileLink.fromResponse(e)).toList();
+    });
+  }
+
+  @override
+  void initState() {
+    _requestProfileLinks();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraint) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraint) {
       return Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           alignment: Alignment.center,
@@ -42,7 +69,8 @@ class Footer extends StatelessWidget {
                       )),
                   const SizedBox(height: 5),
                   GestureDetector(
-                    onTap: () => {launchUrl(Uri.parse('mailto:pycivan@gmail.com'))},
+                    onTap: () =>
+                        {launchUrl(Uri.parse('mailto:pycivan@gmail.com'))},
                     child: Text(
                       "pycivan@gmail.com",
                       style: TextStyle(
@@ -61,21 +89,22 @@ class Footer extends StatelessWidget {
                     alignment: WrapAlignment.spaceBetween,
                     runSpacing: 10,
                     children: [
-                      FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                          future: FirebaseFirestore.instance.collection('profile_link').get(),
-                          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-                            if (snapshot.connectionState == ConnectionState.done) {
-                              var profileLinks = snapshot.data!.docs.map((e) => ProfileLink.fromResponse(e)).toList();
-                              profileLinks.sort((a, b) => a.id.compareTo(b.id));
-                              return Wrap(
-                                direction: Axis.horizontal,
-                                spacing: 20,
-                                children: profileLinks.map((doc) => ProfileLinkButton(profileLink: doc)).toList(),
-                              );
-                            } else {
-                              return Container();
-                            }
-                          }),
+                      Wrap(
+                        direction: Axis.horizontal,
+                        spacing: 20,
+                        children: _links
+                            .map((link) => Row(
+                                  children: [
+                                    ProfileLinkButton(
+                                      svgUrl: link.svgUrl,
+                                      url: link.url,
+                                      color:
+                                          link.applyColor ? footerColor : null,
+                                    )
+                                  ],
+                                ))
+                            .toList(),
+                      ),
                       const SizedBox(width: 700),
                       Text(
                         "©chandroidx. 2023 (Thanks to @cowkite)",

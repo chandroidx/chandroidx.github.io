@@ -33,7 +33,7 @@ class BasePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 100),
-                    Footer()
+                    const Footer()
                   ],
                 ),
               ),
