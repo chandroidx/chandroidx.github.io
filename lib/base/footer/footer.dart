@@ -18,8 +18,7 @@ class FooterState extends State<Footer> {
   List<ProfileLink> _links = [];
 
   _requestProfileLinks() async {
-    var collection =
-        await FirebaseFirestore.instance.collection('profile_link').get();
+    var collection = await FirebaseFirestore.instance.collection('profile_link').get();
 
     setState(() {
       _links = collection.docs.map((e) => ProfileLink.fromResponse(e)).toList();
@@ -34,8 +33,7 @@ class FooterState extends State<Footer> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraint) {
+    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraint) {
       return Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           alignment: Alignment.center,
@@ -69,8 +67,7 @@ class FooterState extends State<Footer> {
                       )),
                   const SizedBox(height: 5),
                   GestureDetector(
-                    onTap: () =>
-                        {launchUrl(Uri.parse('mailto:pycivan@gmail.com'))},
+                    onTap: () => {launchUrl(Uri.parse('mailto:pycivan@gmail.com'))},
                     child: Text(
                       "pycivan@gmail.com",
                       style: TextStyle(
@@ -93,16 +90,11 @@ class FooterState extends State<Footer> {
                         direction: Axis.horizontal,
                         spacing: 20,
                         children: _links
-                            .map((link) => Row(
-                                  children: [
-                                    ProfileLinkButton(
-                                      svgUrl: link.svgUrl,
-                                      url: link.url,
-                                      color:
-                                          link.applyColor ? footerColor : null,
-                                    )
-                                  ],
-                                ))
+                            .map(
+                              (link) => ProfileLinkButton(
+                                profileLink: link,
+                              ),
+                            )
                             .toList(),
                       ),
                       const SizedBox(width: 700),
