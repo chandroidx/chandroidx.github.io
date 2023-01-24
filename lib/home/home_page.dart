@@ -7,8 +7,30 @@ import 'package:chandroidx/utils/fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<StatefulWidget> createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage> {
+  List<Skill> _skills = [];
+
+  _requestSkills() async {
+    var collection = await FirebaseFirestore.instance.collection('skills').get();
+
+    setState(() {
+      _skills = collection.docs.map((e) => Skill.fromResponse(e)).toList();
+      _skills.sort((a, b) => b.highlight ? 1 : -1);
+    });
+  }
+
+  @override
+  void initState() {
+    _requestSkills();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,24 +78,13 @@ class HomePage extends StatelessWidget {
               ]),
               const SizedBox(height: 80),
               SubTitle(title: 'Skills', emoji: '💪', children: [
-                FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                    future: FirebaseFirestore.instance.collection('skills').get(),
-                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        var skills = snapshot.data!.docs.map((e) => Skill.fromResponse(e)).toList();
-                        skills.sort((a, b) => b.highlight ? 1 : -1);
-
-                        return Wrap(
-                          direction: Axis.horizontal,
-                          alignment: WrapAlignment.start,
-                          spacing: 10,
-                          runSpacing: 10,
-                          children: skills.map((skill) => SkillChip(skill: skill)).toList(),
-                        );
-                      } else {
-                        return Container();
-                      }
-                    })
+                Wrap(
+                  direction: Axis.horizontal,
+                  alignment: WrapAlignment.start,
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: _skills.map((skill) => SkillChip(skill: skill)).toList(),
+                )
               ])
             ],
           ),

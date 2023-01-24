@@ -13,8 +13,6 @@ class Footer extends StatefulWidget {
 }
 
 class FooterState extends State<Footer> {
-  final footerColor = const Color.fromARGB(255, 140, 152, 169);
-
   List<ProfileLink> _links = [];
 
   _requestProfileLinks() async {
@@ -22,6 +20,7 @@ class FooterState extends State<Footer> {
 
     setState(() {
       _links = collection.docs.map((e) => ProfileLink.fromResponse(e)).toList();
+      _links.sort((a,b) => a.id.compareTo(b.id));
     });
   }
 
