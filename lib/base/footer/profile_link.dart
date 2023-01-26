@@ -13,8 +13,8 @@ class ProfileLinkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: _launchURL,
-        child: SvgPicture.network(
-          profileLink.svgUrl,
+        child: SvgPicture.asset(
+          profileLink.asset,
           width: 20,
           height: 20,
           color: profileLink.applyColor ? ChandroidColors.footerColor.color : null,
@@ -32,14 +32,14 @@ class ProfileLinkButton extends StatelessWidget {
 }
 
 class ProfileLink {
-  final int id;
-  final String svgUrl;
+  final String asset;
   final String url;
   final bool applyColor;
 
-  ProfileLink({required this.id, required this.svgUrl, required this.url, required this.applyColor});
+  ProfileLink({required this.asset, required this.url, required this.applyColor});
 
-  factory ProfileLink.fromResponse(QueryDocumentSnapshot<Map<String, dynamic>> response) {
-    return ProfileLink(id: response['id'], svgUrl: response['svg_url'], url: response['url'], applyColor: response['apply_color']);
-  }
+  static final links = [
+    ProfileLink(asset: 'assets/ico_github.svg', url: 'https://github.com/chandroidx', applyColor: true),
+    ProfileLink(asset: 'assets/ico_instagram.svg', url: 'https://instagram.com/ch_android', applyColor: false),
+  ];
 }

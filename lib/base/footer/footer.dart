@@ -1,34 +1,11 @@
-import 'package:chandroidx/base/footer/profile_link_button.dart';
+import 'package:chandroidx/base/footer/profile_link.dart';
 import 'package:chandroidx/utils/colors.dart';
 import 'package:chandroidx/utils/fonts.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Footer extends StatefulWidget {
+class Footer extends StatelessWidget {
   const Footer({super.key});
-
-  @override
-  State<StatefulWidget> createState() => FooterState();
-}
-
-class FooterState extends State<Footer> {
-  List<ProfileLink> _links = [];
-
-  _requestProfileLinks() async {
-    var collection = await FirebaseFirestore.instance.collection('profile_link').get();
-
-    setState(() {
-      _links = collection.docs.map((e) => ProfileLink.fromResponse(e)).toList();
-      _links.sort((a,b) => a.id.compareTo(b.id));
-    });
-  }
-
-  @override
-  void initState() {
-    _requestProfileLinks();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +65,7 @@ class FooterState extends State<Footer> {
                       Wrap(
                         direction: Axis.horizontal,
                         spacing: 20,
-                        children: _links
+                        children: ProfileLink.links
                             .map(
                               (link) => ProfileLinkButton(
                                 profileLink: link,

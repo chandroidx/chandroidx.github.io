@@ -1,6 +1,5 @@
 import 'package:chandroidx/utils/colors.dart';
 import 'package:chandroidx/utils/fonts.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class SkillChip extends StatelessWidget {
@@ -34,7 +33,13 @@ class Skill {
 
   Skill({required this.name, required this.highlight});
 
-  factory Skill.fromResponse(QueryDocumentSnapshot<Map<String, dynamic>> response) {
-    return Skill(name: response['name'], highlight: response['highlight']);
-  }
+  static final skills = [
+    Skill(name: 'Android', highlight: true),
+    Skill(name: 'Flutter', highlight: true),
+    Skill(name: 'Dart', highlight: false),
+    Skill(name: 'Java', highlight: false),
+    Skill(name: 'Kotlin', highlight: false),
+    Skill(name: 'PostgreSQL', highlight: false),
+    Skill(name: 'WebRTC', highlight: false)
+  ];
 }
