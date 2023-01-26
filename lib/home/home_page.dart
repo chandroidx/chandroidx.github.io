@@ -28,6 +28,8 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(const NetworkImage('https://wakatime.com/share/@ChandroidX/a8bdfb2d-3f53-4b74-bf8b-5a8f91960549.png'), context);
+    precacheImage(const NetworkImage('https://ghchart.rshah.org/chandroidx'), context);
     return BasePage(
         title: '찬드로이드 개발 블로그 \u2618️',
         body: SizedBox(
