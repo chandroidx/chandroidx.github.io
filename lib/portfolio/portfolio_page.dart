@@ -8,6 +8,10 @@ class PortfolioPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    for (var element in Portfolio.portfolios) {
+      precacheImage(AssetImage(element.asset), context);
+    }
+
     return BasePage(
         title: '찬드로이드 ☘ | 포트폴리오',
         body: ListView.separated(
