@@ -1,4 +1,5 @@
 import 'package:chandroidx/base/footer/profile_link.dart';
+import 'package:chandroidx/utils/clickable.dart';
 import 'package:chandroidx/utils/colors.dart';
 import 'package:chandroidx/utils/fonts.dart';
 import 'package:flutter/material.dart';
@@ -42,8 +43,8 @@ class Footer extends StatelessWidget {
                         fontFamily: FontFamily.sourceSansPro.fontFamily,
                       )),
                   const SizedBox(height: 5),
-                  GestureDetector(
-                    onTap: () => {launchUrl(Uri.parse('mailto:pycivan@gmail.com'))},
+                  Clickable(
+                    onClick: () => {launchUrl(Uri.parse('mailto:pycivan@gmail.com'))},
                     child: Text(
                       "pycivan@gmail.com",
                       style: TextStyle(

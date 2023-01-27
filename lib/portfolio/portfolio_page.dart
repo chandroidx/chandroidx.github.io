@@ -1,6 +1,6 @@
 import 'package:chandroidx/base/base_page.dart';
 import 'package:chandroidx/base/main_tab.dart';
-import 'package:chandroidx/portfolio/item_portfolio.dart';
+import 'package:chandroidx/portfolio/portfolio.dart';
 import 'package:flutter/material.dart';
 
 class PortfolioPage extends StatelessWidget {

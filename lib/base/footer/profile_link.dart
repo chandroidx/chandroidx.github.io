@@ -1,3 +1,4 @@
+import 'package:chandroidx/utils/clickable.dart';
 import 'package:chandroidx/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,8 @@ class ProfileLinkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: _launchURL,
+    return Clickable(
+        onClick: _launchURL,
         child: SvgPicture.asset(
           profileLink.asset,
           width: 20,
