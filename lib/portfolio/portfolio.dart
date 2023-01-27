@@ -66,7 +66,7 @@ class Portfolio {
       title: 'ARON (PL)',
       description: '영상회의 및 업무관리 서비스',
       dateRange: '2021.03 - 2023.01',
-      contents: ['영상회의 PIP 모드 구현', '가상 배경, 얼굴 모자이크 / 블러, Object Detection 기능 개발', 'MediaProjection - 화면 공유 기능 개발', 'Flask - Rest API 개발'],
+      contents: ['영상회의 PIP 모드 구현', '가상 배경, 얼굴 모자이크 / 블러, Object Detection 기능 개발', 'MediaProjection - 화면 공유 기능 개발', 'Flask - Rest API 개발', 'MVVM + Clean Architecture 적용'],
       skills: [
         PortfolioSkill(name: 'Android', isLibrary: false),
         PortfolioSkill(name: 'Kotlin', isLibrary: false),
@@ -86,7 +86,7 @@ class Portfolio {
       title: 'LG Electronics E-manual Smart Creator (PL)',
       description: '매뉴얼 제작 서비스',
       dateRange: '2022.09 - 2022.11',
-      contents: ['영상회의 PIP 모드 구현', '가상 배경, 얼굴 모자이크 / 블러, Object Detection 기능 개발', 'MediaProjection - 화면 공유 기능 개발', 'Flask - Rest API 개발'],
+      contents: ['영상회의 PIP 모드 구현', '가상 배경, 얼굴 모자이크 / 블러, Object Detection 기능 개발', 'MediaProjection - 화면 공유 기능 개발', 'Flask - Rest API 개발', 'MVVM + Clean Architecture 적용'],
       skills: [
         PortfolioSkill(name: 'Android', isLibrary: false),
         PortfolioSkill(name: 'Kotlin', isLibrary: false),
@@ -101,7 +101,7 @@ class Portfolio {
       title: 'Yokogawa FieldMasterViewer (PL)',
       description: '영상회의 및 업무관리 서비스',
       dateRange: '2022.02 - 2022.10',
-      contents: ['FCM push 연동', 'Google Play 앱 배포 및 유지 보수'],
+      contents: ['FCM push 연동', 'Google Play 앱 배포 및 유지 보수', 'MVVM + Clean Architecture 적용'],
       skills: [
         PortfolioSkill(name: 'Android', isLibrary: false),
         PortfolioSkill(name: 'Kotlin', isLibrary: false),
