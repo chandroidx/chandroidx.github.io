@@ -63,7 +63,7 @@ class Portfolio {
     Portfolio(
       asset: 'assets/portfolio/thumbnail_aron.png',
       category: 'Mobile application / Smart glass application',
-      title: 'ARON',
+      title: 'ARON (PL)',
       description: '영상회의 및 업무관리 서비스',
       dateRange: '2021.03 - 2023.01',
       contents: ['영상회의 PIP 모드 구현', '가상 배경, 얼굴 모자이크 / 블러, Object Detection 기능 개발', 'MediaProjection - 화면 공유 기능 개발', 'Flask - Rest API 개발'],
