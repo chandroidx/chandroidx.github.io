@@ -20,7 +20,7 @@ class ClickableState extends State<Clickable> {
       onExit: (PointerEvent details) => setState(() => isHovering = false),
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () => widget.onClick,
+        onTap: () => {widget.onClick()},
         child: AnimatedOpacity(
           duration: const Duration(milliseconds: 200),
           opacity: isHovering ? 0.6 : 1.0,
