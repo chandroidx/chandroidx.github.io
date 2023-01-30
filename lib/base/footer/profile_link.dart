@@ -1,6 +1,6 @@
+import 'dart:convert';
+
 import 'package:chandroidx/utils/clickable.dart';
-import 'package:chandroidx/utils/colors.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,11 +14,10 @@ class ProfileLinkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Clickable(
         onClick: _launchURL,
-        child: SvgPicture.asset(
-          profileLink.asset,
+        child: SvgPicture.network(
+          profileLink.svgUrl,
           width: 20,
           height: 20,
-          color: profileLink.applyColor ? ChandroidColors.footerColor.color : null,
         ));
   }
 
@@ -33,14 +32,12 @@ class ProfileLinkButton extends StatelessWidget {
 }
 
 class ProfileLink {
-  final String asset;
+  final String svgUrl;
   final String url;
-  final bool applyColor;
 
-  ProfileLink({required this.asset, required this.url, required this.applyColor});
+  ProfileLink({required this.svgUrl, required this.url});
 
-  static final links = [
-    ProfileLink(asset: 'assets/ico_github.svg', url: 'https://github.com/chandroidx', applyColor: true),
-    ProfileLink(asset: 'assets/ico_instagram.svg', url: 'https://instagram.com/ch_android', applyColor: false),
-  ];
+  factory ProfileLink.fromJson(dynamic json) {
+    return ProfileLink(svgUrl: json['svg_url'], url: json['url']);
+  }
 }
