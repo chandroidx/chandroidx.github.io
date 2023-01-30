@@ -2,6 +2,7 @@ import 'package:chandroidx/base/base_page.dart';
 import 'package:chandroidx/base/main_tab.dart';
 import 'package:chandroidx/home/skill.dart';
 import 'package:chandroidx/home/sub_title.dart';
+import 'package:chandroidx/utils/api_utils.dart';
 import 'package:chandroidx/utils/colors.dart';
 import 'package:chandroidx/utils/fonts.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   late Image gitChart;
   late Image wakaTime;
+  List<Skill> _skills = [];
 
   @override
   void initState() {
@@ -23,6 +25,12 @@ class HomePageState extends State<HomePage> {
       gitChart = Image.network('https://ghchart.rshah.org/chandroidx');
       wakaTime = Image.network(width: 500, 'https://wakatime.com/share/@ChandroidX/a8bdfb2d-3f53-4b74-bf8b-5a8f91960549.png');
     });
+
+    APIUtils.getProfileSkills().then((value) => {
+          setState(() {
+            _skills = value;
+          })
+        });
     super.initState();
   }
 
@@ -75,7 +83,7 @@ class HomePageState extends State<HomePage> {
                   alignment: WrapAlignment.start,
                   spacing: 10,
                   runSpacing: 10,
-                  children: Skill.skills.map((skill) => SkillChip(skill: skill)).toList(),
+                  children: _skills.map((skill) => SkillChip(skill: skill)).toList(),
                 )
               ])
             ],

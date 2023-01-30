@@ -33,13 +33,7 @@ class Skill {
 
   Skill({required this.name, required this.highlight});
 
-  static final skills = [
-    Skill(name: 'Android', highlight: true),
-    Skill(name: 'Flutter', highlight: true),
-    Skill(name: 'Dart', highlight: false),
-    Skill(name: 'Java', highlight: false),
-    Skill(name: 'Kotlin', highlight: false),
-    Skill(name: 'PostgreSQL', highlight: false),
-    Skill(name: 'WebRTC', highlight: false)
-  ];
+  factory Skill.fromJson(dynamic json) {
+    return Skill(name: json['name'], highlight: json['highlight']);
+  }
 }

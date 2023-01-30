@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:chandroidx/base/footer/profile_link.dart';
+import 'package:chandroidx/home/skill.dart';
 import 'package:http/http.dart' as http;
 
 class APIUtils {
@@ -39,6 +40,17 @@ class APIUtils {
   static Future<List<ProfileLink>> getProfileLinks() async {
     var body = await _requestListAPI('profile/get-links');
     var list = body?.map((e) => ProfileLink.fromJson(e)).toList();
+
+    if (list == null) {
+      return [];
+    } else {
+      return list;
+    }
+  }
+
+  static Future<List<Skill>> getProfileSkills() async {
+    var body = await _requestListAPI('profile/get-skills');
+    var list = body?.map((e) => Skill.fromJson(e)).toList();
 
     if (list == null) {
       return [];
