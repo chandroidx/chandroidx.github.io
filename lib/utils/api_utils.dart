@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:chandroidx/base/footer/profile_link.dart';
 import 'package:chandroidx/home/skill.dart';
+import 'package:chandroidx/portfolio/portfolio.dart';
 import 'package:http/http.dart' as http;
 
 class APIUtils {
@@ -22,7 +23,7 @@ class APIUtils {
   static Future<dynamic?> _requestAPI(String route) async {
     var response = await http.get(_createUri(route));
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      return jsonDecode(utf8.decode(response.bodyBytes));
     } else {
       return null;
     }
@@ -31,7 +32,7 @@ class APIUtils {
   static Future<List<dynamic>?> _requestListAPI(String route) async {
     var response = await http.get(_createUri(route));
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      return jsonDecode(utf8.decode(response.bodyBytes));
     } else {
       return null;
     }
@@ -51,6 +52,17 @@ class APIUtils {
   static Future<List<Skill>> getProfileSkills() async {
     var body = await _requestListAPI('profile/get-skills');
     var list = body?.map((e) => Skill.fromJson(e)).toList();
+
+    if (list == null) {
+      return [];
+    } else {
+      return list;
+    }
+  }
+
+  static Future<List<Portfolio>> getPortfolios() async {
+    var body = await _requestListAPI('portfolio/get-portfolios');
+    var list = body?.map((e) => Portfolio.fromJson(e)).toList();
 
     if (list == null) {
       return [];
