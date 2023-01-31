@@ -1,5 +1,7 @@
 import 'package:chandroidx/base/base_page.dart';
 import 'package:chandroidx/base/main_tab.dart';
+import 'package:chandroidx/blog/post.dart';
+import 'package:chandroidx/utils/api_utils.dart';
 import 'package:flutter/material.dart';
 
 class PostPage extends StatefulWidget {
@@ -12,8 +14,24 @@ class PostPage extends StatefulWidget {
 }
 
 class PostPageState extends State<PostPage> {
+  Post? _post;
+
+  @override
+  void initState() {
+    APIUtils.getPostDetail(widget.postId).then((value) => {
+          setState(() {
+            _post = value;
+          })
+        });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BasePage(title: '123', body: Container(), tab: MainTab.blog);
+    if (_post != null) {
+      return BasePage(title: _post!.title, body: Container(), tab: MainTab.blog);
+    } else {
+      return Container();
+    }
   }
 }

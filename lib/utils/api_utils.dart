@@ -17,12 +17,13 @@ class APIUtils {
 
   static const baseUrl = 'api.chandroidx.com:5020';
 
-  static Uri _createUri(String route) {
-    return Uri.https(baseUrl, route);
+  static Uri _createUri(String route, {Map<String, dynamic>? queryParameters}) {
+    return Uri.https(baseUrl, route, queryParameters);
   }
 
-  static Future<dynamic?> _requestAPI(String route) async {
-    var response = await http.get(_createUri(route));
+  static Future<dynamic?> _requestAPI(String route, {Map<String, dynamic>? queryParameters}) async {
+    print(_createUri(route, queryParameters: queryParameters));
+    var response = await http.get(_createUri(route, queryParameters: queryParameters));
     if (response.statusCode == 200) {
       return jsonDecode(utf8.decode(response.bodyBytes));
     } else {
@@ -30,8 +31,8 @@ class APIUtils {
     }
   }
 
-  static Future<List<dynamic>?> _requestListAPI(String route) async {
-    var response = await http.get(_createUri(route));
+  static Future<List<dynamic>?> _requestListAPI(String route, {Map<String, dynamic>? queryParameters}) async {
+    var response = await http.get(_createUri(route, queryParameters: queryParameters));
     if (response.statusCode == 200) {
       return jsonDecode(utf8.decode(response.bodyBytes));
     } else {
@@ -65,6 +66,17 @@ class APIUtils {
     var list = body?.map((e) => Post.fromJson(e)).toList();
 
     return list.nullOrEmpty();
+  }
+
+  static Future<Post> getPostDetail(String postId) async {
+    print('blog/get-post-detail?post_id=$postId');
+    var body = await _requestAPI(
+      'blog/get-post-detail',
+      queryParameters: {
+        'post_id': postId,
+      },
+    );
+    return Post.fromJson(body);
   }
 }
 
