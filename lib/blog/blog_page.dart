@@ -5,7 +5,9 @@ import 'package:chandroidx/utils/api_utils.dart';
 import 'package:flutter/material.dart';
 
 class BlogPage extends StatefulWidget {
-  const BlogPage({super.key});
+  final String? id;
+
+  const BlogPage({super.key, this.id});
 
   @override
   State<StatefulWidget> createState() => BlogPageState();

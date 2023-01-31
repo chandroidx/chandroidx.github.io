@@ -128,7 +128,7 @@ extension MainTabExtension on MainTab {
   Widget get navigationRoute {
     switch (this) {
       case MainTab.home:
-        return HomePage();
+        return const HomePage();
       case MainTab.portfolio:
         return const PortfolioPage();
       case MainTab.blog:
@@ -136,7 +136,7 @@ extension MainTabExtension on MainTab {
     }
   }
 
-  void navigate(BuildContext context) {
+  void navigate(BuildContext context, {String? id}) {
     router.navigateTo(context, route, transition: TransitionType.none);
   }
 }
