@@ -1,8 +1,8 @@
-import 'package:chandroidx/blog/category.dart';
 import 'package:chandroidx/utils/clickable.dart';
 import 'package:chandroidx/utils/colors.dart';
 import 'package:chandroidx/utils/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PostWidget extends StatelessWidget {
   final Post post;
@@ -11,7 +11,7 @@ class PostWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(AssetImage(post.thumbnailAsset), context);
+    precacheImage(NetworkImage(post.thumbnailUrl), context);
     return Clickable(
       onClick: () => {},
       child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraint) {
@@ -24,7 +24,7 @@ class PostWidget extends StatelessWidget {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(post.category.title,
+                Text(post.category,
                     style: TextStyle(fontFamily: FontFamily.sourceSansPro.fontFamily, fontSize: isMobileSize ? 16 : 17, fontWeight: FontWeight.w600, color: ChandroidColors.primaryColor.color)),
                 const SizedBox(height: 10),
                 Text(post.title,
@@ -33,7 +33,7 @@ class PostWidget extends StatelessWidget {
                 Text(post.subtitle,
                     style: TextStyle(fontFamily: FontFamily.appleSDGothicNeo.fontFamily, fontSize: isMobileSize ? 15 : 17, fontWeight: FontWeight.normal, color: ChandroidColors.textColor.color)),
                 const SizedBox(height: 10),
-                Text(post.date,
+                Text(DateFormat('yyyy-MM-dd hh:mm').format(post.date),
                     style: TextStyle(
                         fontFamily: FontFamily.appleSDGothicNeo.fontFamily, fontSize: isMobileSize ? 14 : 16, fontWeight: FontWeight.normal, color: const Color.fromARGB(255, 144, 148, 154))),
                 const SizedBox(height: 30),
@@ -55,7 +55,7 @@ class PostWidget extends StatelessWidget {
               visible: !isMobileSize,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Image.asset(post.thumbnailAsset, width: 200, height: 200),
+                child: Image.network(post.thumbnailUrl, width: 200, height: 200),
               ),
             )
           ],
@@ -67,38 +67,26 @@ class PostWidget extends StatelessWidget {
 
 class Post {
   final String id;
-  final Category category;
+  final String category;
   final String title;
   final String subtitle;
-  final String date;
-  final String mdAsset;
-  final String thumbnailAsset;
+  final DateTime date;
+  final String content;
+  final String thumbnailUrl;
   final String summary;
 
-  Post({required this.id, required this.category, required this.title, required this.subtitle, required this.date, required this.mdAsset, required this.thumbnailAsset, required this.summary});
+  Post({required this.id, required this.category, required this.title, required this.subtitle, required this.date, required this.content, required this.thumbnailUrl, required this.summary});
 
-  static final posts = [
-    // Post(
-    //   id: "202301261200",
-    //   category: Category.blog,
-    //   title: '찬드로이드 개발 블로그 \u2618️',
-    //   subtitle: '시작하는 아무말',
-    //   date: '2023-01-26 12:00',
-    //   mdAsset: '',
-    //   thumbnailAsset: 'assets/ChandroidX.png',
-    //   summary:
-    //       '아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생',
-    // ),
-    // Post(
-    //   id: "202301261200",
-    //   category: Category.blog,
-    //   title: '찬드로이드 개발 블로그 \u2618️',
-    //   subtitle: '시작하는 아무말',
-    //   date: '2023-01-26 12:00',
-    //   mdAsset: '',
-    //   thumbnailAsset: 'assets/ChandroidX.png',
-    //   summary:
-    //       '아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생아무렇게나 시작하는 블로그 인생',
-    // )
-  ];
+  factory Post.fromJson(dynamic json) {
+    return Post(
+      id: json['id'],
+      category: json['category'],
+      title: json['title'],
+      subtitle: json['subtitle'],
+      date: DateTime.parse(json['reg_date']),
+      content: 'asd',
+      thumbnailUrl: json['thumbnail_url'],
+      summary: json['summary'],
+    );
+  }
 }
