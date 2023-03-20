@@ -1,30 +1,13 @@
-import 'dart:convert';
 
 import 'package:chandroidx/base/footer/profile_link.dart';
-import 'package:chandroidx/utils/api_utils.dart';
 import 'package:chandroidx/utils/clickable.dart';
 import 'package:chandroidx/utils/colors.dart';
 import 'package:chandroidx/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Footer extends StatefulWidget {
+class Footer extends StatelessWidget {
   const Footer({super.key});
-
-  @override
-  State<StatefulWidget> createState() => FooterState();
-}
-
-class FooterState extends State<Footer> {
-  List<ProfileLink> _links = [];
-
-  @override
-  void initState() {
-    APIUtils.getProfileLinks().then((value) => setState(() {
-          _links = value;
-        }));
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +67,7 @@ class FooterState extends State<Footer> {
                       Wrap(
                         direction: Axis.horizontal,
                         spacing: 20,
-                        children: _links
+                        children: links
                             .map(
                               (link) => ProfileLinkButton(
                                 profileLink: link,

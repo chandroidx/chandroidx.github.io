@@ -1,4 +1,3 @@
-import 'package:chandroidx/blog/blog_page.dart';
 import 'package:chandroidx/home/home_page.dart';
 import 'package:chandroidx/main.dart';
 import 'package:chandroidx/portfolio/portfolio_page.dart';
@@ -6,6 +5,7 @@ import 'package:chandroidx/utils/colors.dart';
 import 'package:chandroidx/utils/fonts.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainTabContainer extends StatefulWidget {
   final MainTab tab;
@@ -17,6 +17,15 @@ class MainTabContainer extends StatefulWidget {
 }
 
 class MainTabContainerState extends State<MainTabContainer> {
+  _launchBlog() async {
+    final uri = Uri.parse('https://blog.chandroidx.com');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      throw 'Could not launch https://blog.chandroidx.com';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,9 +45,9 @@ class MainTabContainerState extends State<MainTabContainer> {
           ),
           const SizedBox(width: 30),
           MainTabButton(
-            title: MainTab.blog.title,
-            isSelected: widget.tab == MainTab.blog,
-            onPressed: () => MainTab.blog.navigate(context),
+            title: 'Blog',
+            isSelected: false,
+            onPressed: () => _launchBlog(),
           ),
         ],
       ),
@@ -88,8 +97,7 @@ class MainTabButton extends StatelessWidget {
 
 enum MainTab {
   home,
-  portfolio,
-  blog;
+  portfolio;
 
   static Map<String, Widget Function(BuildContext)> routes() {
     Map<String, Widget Function(BuildContext)> routes = {};
@@ -109,8 +117,6 @@ extension MainTabExtension on MainTab {
         return 'Home';
       case MainTab.portfolio:
         return 'Portfolio';
-      case MainTab.blog:
-        return 'Blog';
     }
   }
 
@@ -120,8 +126,6 @@ extension MainTabExtension on MainTab {
         return '/';
       case MainTab.portfolio:
         return '/portfolio';
-      case MainTab.blog:
-        return '/blog';
     }
   }
 
@@ -131,8 +135,6 @@ extension MainTabExtension on MainTab {
         return const HomePage();
       case MainTab.portfolio:
         return const PortfolioPage();
-      case MainTab.blog:
-        return const BlogPage();
     }
   }
 

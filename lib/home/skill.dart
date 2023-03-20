@@ -32,8 +32,14 @@ class Skill {
   final bool highlight;
 
   Skill({required this.name, required this.highlight});
-
-  factory Skill.fromJson(dynamic json) {
-    return Skill(name: json['name'], highlight: json['highlight']);
-  }
 }
+
+var skills = [
+  Skill(name: "Android", highlight: true),
+  Skill(name: "Flutter", highlight: true),
+  Skill(name: "Java", highlight: false),
+  Skill(name: "Kotlin", highlight: false),
+  Skill(name: "Dart", highlight: false),
+  Skill(name: "PostgreSQL", highlight: false),
+  Skill(name: "WebRTC", highlight: false),
+];

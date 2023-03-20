@@ -12,13 +12,7 @@ class ProfileLinkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Clickable(
-        onClick: _launchURL,
-        child: SvgPicture.network(
-          profileLink.svgUrl,
-          width: 20,
-          height: 20,
-        ));
+    return Clickable(onClick: _launchURL, child: profileLink.svg);
   }
 
   _launchURL() async {
@@ -32,12 +26,13 @@ class ProfileLinkButton extends StatelessWidget {
 }
 
 class ProfileLink {
-  final String svgUrl;
+  final SvgPicture svg;
   final String url;
 
-  ProfileLink({required this.svgUrl, required this.url});
-
-  factory ProfileLink.fromJson(dynamic json) {
-    return ProfileLink(svgUrl: json['svg_url'], url: json['url']);
-  }
+  ProfileLink({required this.svg, required this.url});
 }
+
+final links = [
+  ProfileLink(svg: SvgPicture.asset("assets/ico_instagram.svg", width: 20, height: 20), url: "https://instagram.com/ch_android"),
+  ProfileLink(svg: SvgPicture.asset("assets/ico_github.svg", width: 20, height: 20), url: "https://github.com/chandroidx"),
+];
