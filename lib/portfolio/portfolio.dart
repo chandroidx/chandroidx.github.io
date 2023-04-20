@@ -187,7 +187,7 @@ final portfolios = [
       PortfolioSkill(name: 'MLKit', highlight: false),
     ],
   ),
-];
+].reversed.toList();
 
 class PortfolioSkill {
   final String name;
