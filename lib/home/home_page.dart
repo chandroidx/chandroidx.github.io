@@ -68,7 +68,11 @@ class HomePageState extends State<HomePage> {
                     color: ChandroidColors.textColor.color,
                   )),
               const SizedBox(height: 80),
-              SubTitle(title: 'Activities', emoji: '👨‍💻', children: [gitChart, const SizedBox(height: 10), wakaTime]),
+              SubTitle(
+                title: 'Activities',
+                emoji: '👨‍💻',
+                children: [gitChart, const SizedBox(height: 10), wakaTime],
+              ),
               const SizedBox(height: 80),
               SubTitle(title: 'Skills', emoji: '💪', children: [
                 Wrap(

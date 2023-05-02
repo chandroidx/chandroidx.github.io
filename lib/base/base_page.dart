@@ -11,7 +11,7 @@ class BasePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Title(
+    return SelectionArea(child: Title(
       color: Colors.black,
       title: title,
       child: Material(
@@ -33,7 +33,7 @@ class BasePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 100),
-                    Footer()
+                    const Footer()
                   ],
                 ),
               ),
@@ -41,6 +41,6 @@ class BasePage extends StatelessWidget {
           }),
         ),
       ),
-    );
+    ));
   }
 }

@@ -1,6 +1,6 @@
 # chandroidx
 
-ChandroidX's Blog Proect
+ChandroidX's Blog Project
 
 ## Getting Started
 
